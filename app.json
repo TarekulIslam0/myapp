@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "My Music App",
+    "slug": "home",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "com.nirobme.mymusic"
+    },
+    "android": {
+      "package": "com.nirobme.freqmusic"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f06b217f-87c2-4324-9cb7-983277c5aadc"
+      }
+    }
+  }
+}
