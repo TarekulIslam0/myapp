@@ -1,5 +1,5 @@
 name: Build Expo APK
-on: 
+on:
   push:
     branches: [ main ]
   workflow_dispatch:
@@ -9,16 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm ci
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - run: eas build --platform android --profile preview --non-interactive --wait --output app.apk
+          node-version: '20'
+          
+      - run: npm install
+      
+      - run: npx expo install --fix
+      
+      - run: npx expo prebuild --clean
+      
+      - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
+      
       - uses: actions/upload-artifact@v4
         with:
-          name: my-app-apk
-          path: app.apk
+          name: app-debug
+          path: android/app/build/outputs/apk/debug/
